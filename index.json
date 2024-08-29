@@ -1,0 +1,13 @@
+{
+    "files": [
+      "form.js",
+      "form.yml",
+      "manifest.yml",
+      "submit.yml.erb",
+      "view.html.erb",
+      "template/after.sh.erb",
+      "template/before.sh.erb",
+      "template/script.sh.erb"
+    ]
+  }
+  

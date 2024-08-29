@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+echo "Starting OpenRefine script..."
+echo "Start Time - $(date)"
+
+# Clean the environment
+module purge
+
+# Load the required modules
+module load <%= context.modules %>
+
+# Display all loaded modules
+module list
+
+echo "Time after module load - $(date)"
+
+# Set working directory to the home directory
+cd "${HOME}"
+
+#
+# Invoking your application
+#
+
+start_app() {
+    echo "Starting OpenRefine on port $port"
+    nohup refine -p $port &
+    echo "OpenRefine started on port $port"
+}
+
+<% if context.is_vnc == 'true' -%>
+
+# This is a VNC application, configure the Xfce window manager:
+(
+  export SEND_256_COLORS_TO_REMOTE=1
+  export XDG_CONFIG_HOME="<%= session.staged_root.join("config") %>"
+  export XDG_DATA_HOME="<%= session.staged_root.join("share") %>"
+  export XDG_CACHE_HOME="$(mktemp -d)"
+  module restore
+  set -x
+  xfwm4 --compositor=off --daemon --sm-client-disable
+  xsetroot -solid "#D3D3D3"
+  xfsettingsd --sm-client-disable
+  xfce4-panel --sm-client-disable
+) &
+
+# Start the application:
+set -x
+start_app
+
+<% else -%>
+
+# This section is for non-vnc applications.
+# Finally, start the function:
+start_app
+
+<% end -%>

@@ -1,0 +1,39 @@
+---
+cluster: "hpcc"  # Keep the default cluster value
+form:
+  - modules  # A list of modules that are to be automatically loaded
+  - bc_num_hours  # The number of hours the user wants your app to run for
+  - bc_num_slots  # The number of slots your app will use, hardcoded
+  - num_cores  # The number of cores the user wants to dedicate to your app
+  - memory  # The amount of memory the user wants to dedicate to your app
+
+  # Below, you can add some of your own options!
+  - port  # The port on which OpenRefine will run
+
+attributes:
+  modules: "java", "OpenRefine/3.8.2-Java-11"  # OpenRefine requires Java, so we load it by default
+
+  num_cores:
+    widget: "number_field"
+    label: "Number of cores"
+    value: 1
+    min: 1
+    max: 4
+    step: 1
+
+  memory:
+    widget: "text_field"
+    label: "Amount of memory"
+    help: |
+      E.g. 1GB or 500MB. 1GB per core if left blank.
+    pattern: "[0-9]+([gmtGMT][bB])?"
+
+  bc_num_hours:
+    help: |
+      Jobs shorter than four hours will schedule much faster
+
+  port:
+    widget: "text_field"
+    label: "Port"
+    help: "Specify the port number for OpenRefine (default: 3333)"
+    value: 3333

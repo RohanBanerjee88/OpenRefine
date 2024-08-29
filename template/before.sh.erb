@@ -1,0 +1,18 @@
+# This is the before file for OpenRefine app!
+# This file is executed before OpenRefine is started.
+
+# Export the module function if it exists
+[[ $(type -t module) == "function" ]] && export -f module
+
+# Find available port to run OpenRefine on
+port=$(find_port ${host})
+
+# Generate SHA1 encrypted password (requires OpenSSL installed)
+SALT="$(create_passwd 16)"
+password="$(create_passwd 16)"
+PASSWORD_SHA1="$(echo -n "${password}${SALT}" | openssl dgst -sha1 | awk '{print $NF}')"
+
+# Here, you could generate any necessary config files using the port and password
+# generated above.
+
+# Create config file for OpenRefine if needed

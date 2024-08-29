@@ -1,0 +1,13 @@
+---
+batch_connect:
+  template: "basic"
+  min_port: '3333'
+  max_port: '3333'
+script:
+  native:
+    - '--nodes'
+    - '1'
+    - '--cpus-per-task'
+    - '<%= num_cores %>'
+    - '--mem'
+    - '<%= memory %>'

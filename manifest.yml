@@ -1,0 +1,23 @@
+---
+# +==============================================+
+
+name: "OpenRefine"  # Name of your app
+
+# +==============================================+
+
+category: Interactive Apps  # We HIGHLY recommend keeping this value!
+
+# +==============================================+
+
+subcategory: "Data Cleaning"  # Subcategory of your app
+
+# +==============================================+
+
+role: batch_connect  # We HIGHLY recommend keeping this value!
+
+# +==============================================+
+
+description: |
+  OpenRefine is a powerful tool for working with messy data: cleaning it; transforming it from one format into another; and extending it with web services and external data.
+
+# +==============================================+
